@@ -6,28 +6,69 @@ using namespace std;
 
 struct pasien
 {
+    int id;
     string nama;
     int umur;
+    string keluhan;
 
 };
+
+void clearScreen() {
+    cout << "\033[2J\033[H";
+}
+
+void pause() {
+    cout << "Press Enter to continue...";
+    cin.ignore();
+    cin.get();
+}
 
 queue<pasien> antrian;
 stack<pasien> riwayat;
 
-void enqueue ()
-{
+void enqueue () {
     pasien p;
+    while (true) {
+        cout << "ID Pasien: ";
+        cin >> p.id;
+
+        if(!cin.fail() && p.id > 0) {
+            break;
+        }
+        cout << "Input salah! ID harus angka positif" << endl;
+        cin.clear();
+        cin.ignore(1000, '\n');
+        clearScreen();
+    }
+
+    cin.ignore();
     cout << "Masukan Nama Pasien: ";
-    cin >> p.nama;
+    cin.ignore();
+    getline(cin, p.nama);
+    while (true) {
+    cout << "Umur: ";
+    cin >> p.umur;
+
+    if(!cin.fail() && p.id > 0) {
+        break;
+    }
+    cout << "Input salah! ID harus angka positif" << endl;
+    cin.clear();
+    cin.ignore(1000, '\n');
+    }
+    
+    cout << "Keluhan: ";
+    cin.ignore();
+    getline(cin, p.keluhan);
     cout << "\nPasien dengan Nama " << p.nama << " Telah Masuk Antrian\n\n";
     antrian.push(p);
 }
 
 void dequeue ()
 {
-    if (antrian.empty())
-    {
+    if(antrian.empty()) {
         cout << "Antrian Kosong\n\n";
+        return;
     }
 
     pasien p = antrian.front();
@@ -38,15 +79,15 @@ void dequeue ()
 
 void view_antrian ()
 {
-    if (antrian.empty())
-    {
+    if (antrian.empty()) {
         cout << "Antrian Kosong\n\n";
     }
 
     queue<pasien> temp = antrian;
+            cout << "No" << " | " << "Nama" << " | " << "Umur" << " | " << "Keluhan" << "|" << endl;
     while (!temp.empty())
     {
-        cout << "-"  << temp.front().nama << "\n\n";
+        cout << temp.front().id << " | " << temp.front().nama << " | " << temp.front().umur << " | " << temp.front().keluhan << "\n\n";
         temp.pop();
     }
 }
@@ -59,9 +100,10 @@ void view_riwayat()
     }
 
     stack<pasien> temp = riwayat;
+    cout << "No" << " | " << "Nama" << " | " << "Umur" << " | " << "Keluhan" << " | " << endl;
     while (!temp.empty())
     {
-        cout << "-" << temp.top().nama << "\n\n";
+        cout << temp.top().id << " | " << temp.top().nama << " | " << temp.top().umur << " | " << temp.top().keluhan << endl;
         temp.pop();
     }
 }
@@ -70,62 +112,70 @@ void undo()
 {
     if (riwayat.empty())
     {
-        cout << "Riwayat Kosong \n\n";
+        cout << "Riwayat Kosong\n\n";
+        return;
     }
-
-    queue<pasien> temp = antrian;
     pasien p = riwayat.top();
-    antrian.push(p);
-
-    cout << "Pasien " << temp.back().nama << "Telah Ditambahkan ke Antrian\n\n";
-}
-
-void clearScreen() {
-    cout << "\033[2J\033[H";
+    riwayat.pop();            
+    antrian.push(p);          
+    cout << "Pasien " << p.nama << " berhasil dikembalikan ke antrian\n\n";
 }
 
 
 int main ()
 {
     int pilihan;
+    clearScreen();
 
     do
     {
-        cout << "    PILIH MENU    \n";
-        cout << "1.Tambah Pasien\n";
-        cout << "2.Panggil Pasien\n";
-        cout << "3.Tampilakan Antrian\n";
-        cout << "4.Tampilkan Riwayat\n";
-        cout << "5.Undo\n";
-        cout << "0.Exit\n\n";
-        cout << "Masukan Pilihan: ";
+        cout << "Sistem Administrasi Klinik Suka Maju Mundur 67" << endl;
+        cout << "Choose Menu: " << endl;
+        cout << "> 1.Added Patient" << endl;
+        cout << "> 2.Called Patient" << endl;
+        cout << "> 3.Shows Queue" << endl;
+        cout << "> 4.Shows History" << endl;
+        cout << "> 5.Undo\n";
+        cout << "> 0.Exit\n\n";
+        cout << "Masukan Pilihan > ";
         cin >> pilihan;
 
         switch (pilihan)
         {
         case 1:
-        clearScreen();
+            clearScreen();
             enqueue();
+            pause();
+            clearScreen();
             break;
         case 2:
-        clearScreen();
+            clearScreen();
             dequeue();
+            pause();
+            clearScreen();
             break;
         case 3:
-        clearScreen();
+            clearScreen();
             view_antrian();
+            pause();
+            clearScreen();
             break;
         case 4:
-        clearScreen();
+            clearScreen();
             view_riwayat();
+            pause();
+            clearScreen();
             break;
         case 5:
-        clearScreen();
+            clearScreen();
             undo();
+            pause();
+            clearScreen();
             break;
         default:
             cout << "Opsi yang Anda Masukan Salah";
             break;
         }
     } while (pilihan != 0);
+    return 0;
 }
