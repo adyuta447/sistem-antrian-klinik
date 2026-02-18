@@ -76,7 +76,7 @@ void panggilPasien() {
         p.status = "dipanggil";
         riwayat.push_back(p);
         undoStack.push(p);
-        cout << "Pasien dengan prioritas darurat dipanggil: " << p.nama << endl;
+        cout << "Pasien prioritas darurat dipanggil: " << p.nama << endl;
     } else if (!antrianNormal[poli].empty()) {
         Pasien p = antrianNormal[poli].front();
         antrianNormal[poli].pop();
@@ -166,6 +166,7 @@ void clearScreen() {
 int main() {
     int pilihan;
     do {
+        cout << "Sistem Antrian Pasien di Klinik" << endl;
         cout << "Menu: " << endl;
         cout << "1. Tambah Pasien" << endl;
         cout << "2. Panggil Pasien" << endl;
