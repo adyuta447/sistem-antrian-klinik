@@ -39,7 +39,6 @@ void enqueue () {
         clearScreen();
     }
 
-    cin.ignore();
     cout << "Masukan Nama Pasien: ";
     cin.ignore();
     getline(cin, p.nama);
