@@ -81,10 +81,10 @@ void view_antrian ()
     }
 
     queue<pasien> temp = antrian;
-            cout << "No" << " | " << "Nama" << " | " << "Umur" << " | " << "Keluhan" << "|" << endl;
+            cout << "No" << " | " << "Nama" << " | " << "Umur" << " | " << "Keluhan" << " | " << endl;
     while (!temp.empty())
     {
-        cout << temp.front().id << " | " << temp.front().nama << " | " << temp.front().umur << " | " << temp.front().keluhan << "\n\n";
+        cout << temp.front().id << " | " << temp.front().nama << " | " << temp.front().umur << " | " << temp.front().keluhan << " | " << endl;
         temp.pop();
     }
 }
@@ -101,7 +101,7 @@ void view_riwayat()
     cout << "No" << " | " << "Nama" << " | " << "Umur" << " | " << "Keluhan" << " | " << endl;
     while (!temp.empty())
     {
-        cout << temp.top().id << " | " << temp.top().nama << " | " << temp.top().umur << " | " << temp.top().keluhan << endl;
+        cout << temp.top().id << " | " << temp.top().nama << " | " << temp.top().umur << " | " << temp.top().keluhan << " | " << endl;
         temp.pop();
     }
 }
