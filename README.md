@@ -39,7 +39,7 @@ queue<int> q;
 q.push();
 // Menghapus data dari depan antrian (org pertama dilayani & keluar)
 q.pop();
-// Melihat data paling depat(yang akan keluar duluan)
+// Melihat data paling depan(yang akan keluar duluan)
 q.front();
 // Kebalikan dr front (yang terakhir masuk)
 q.back();
@@ -68,7 +68,7 @@ s.push();
 s.pop();
 // Melihat data paling atas tanpa dihapus
 s.top();
-// Data Kosong
+// Menghapus
 s.empy();
 // Jumlah Elemen
 s.size();

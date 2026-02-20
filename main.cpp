@@ -8,16 +8,14 @@ struct pasien {
     string nama;
     int umur;
     string keluhan;
-
 };
 
 void clearScreen() {
-    cout << "\033[2J\033[H";
+    system("clear");
 }
 
 void pause() {
     cout << "Press Enter to continue...";
-    cin.ignore();
     cin.get();
 }
 
@@ -28,15 +26,14 @@ void enqueue () {
     pasien p;
     while (true) {
         cout << "ID Pasien: ";
-        cin >> p.id;
+        cin >> p.id; 
 
         if(!cin.fail() && p.id > 0) {
             break;
         }
         cout << "Input salah! ID harus angka positif" << endl;
         cin.clear();
-        cin.ignore(1000, '\n');
-        clearScreen();
+        cin.ignore();
     }
 
     cout << "Masukan Nama Pasien: ";
@@ -51,7 +48,7 @@ void enqueue () {
     }
     cout << "Input salah! ID harus angka positif" << endl;
     cin.clear();
-    cin.ignore(1000, '\n');
+    cin.ignore();
     }
     
     cout << "Keluhan: ";
