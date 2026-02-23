@@ -24,32 +24,14 @@ stack<pasien> riwayat;
 
 void enqueue () {
     pasien p;
-    while (true) {
-        cout << "ID Pasien: ";
-        cin >> p.id; 
-
-        if(!cin.fail() && p.id > 0) {
-            break;
-        }
-        cout << "Input salah! ID harus angka positif" << endl;
-        cin.clear();
-        cin.ignore();
-    }
+    cout << "ID Pasien: ";
+    cin >> p.id;
 
     cout << "Masukan Nama Pasien: ";
     cin.ignore();
     getline(cin, p.nama);
-    while (true) {
     cout << "Umur: ";
     cin >> p.umur;
-
-    if(!cin.fail() && p.id > 0) {
-        break;
-    }
-    cout << "Input salah! ID harus angka positif" << endl;
-    cin.clear();
-    cin.ignore();
-    }
     
     cout << "Keluhan: ";
     cin.ignore();
